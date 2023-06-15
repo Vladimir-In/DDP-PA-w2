@@ -1,0 +1,39 @@
+---
+title: "My Leaflet Map Assignment"
+author: "Vladimir Inyaev"
+date: "2023-06-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(leaflet)
+```
+
+## This is a map of New 7 Wonders of the World
+### (And Giza pyramids as honorary wonder)
+
+Click on the marker to get Wikipedia reference!
+
+```{r message = FALSE, warnings = FALSE}
+wonders <- data.frame(lat = c(41.890278, 40.68, -13.163333, 30.328611, 27.175, -22.951944, 20.683056, 29.976111),
+                      lng = c(12.492222, 117.23, -72.545556, 35.441944, 78.041944, -43.210556, -88.568611, 31.132778)
+                      )
+wonderSites <- c("<a href='https://en.wikipedia.org/wiki/Colosseum'>Colosseum</a>",
+  "<a href='https://en.wikipedia.org/wiki/Great_Wall_of_China'>Great Wall of China</a>",
+  "<a href='https://en.wikipedia.org/wiki/Machu_Picchu'>Machu Picchu</a>",
+  "<a href='https://en.wikipedia.org/wiki/Petra'>Petra</a>",
+  "<a href='https://en.wikipedia.org/wiki/Taj_Mahal'>Taj Mahal</a>",
+  "<a href='https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)'>Christ the Redeemer Statue</a>",
+  "<a href='https://en.wikipedia.org/wiki/Chichen_Itza'>Chichen Itza</a>",
+  "<a href='https://en.wikipedia.org/wiki/Giza_pyramid_complex'>Giza pyramids</a>"
+  )
+
+wonders %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup = wonderSites)
+```
+
+
